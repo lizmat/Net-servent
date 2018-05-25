@@ -5,7 +5,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [
-    "P5getnetbyname"
+    "P5getservbyname"
   ],
   "description" : "Port of Perl 5's Net::servent",
   "license" : "Artistic-2.0",
