@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/lizmat/Net-servent.svg?branch=master)](https://travis-ci.org/lizmat/Net-servent)
-
 NAME
 ====
 
-Net::servent - Port of Perl 5's Net::servent
+Raku port of Perl's Net::servent module
 
 SYNOPSIS
 ========
@@ -20,11 +18,18 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
+This module tries to mimic the behaviour of Perl's `Net::servent` module as closely as possible in the Raku Programming Language.
+
 This module's exports `getservbyname`, `getservbyportd`, and `getservent` functions that return `Net::servent` objects. This object has methods that return the similarly named structure field name from the C's servent structure from servdb.h, stripped of their leading "s_" parts, namely name, aliases, port and proto.
 
 You may also import all the structure fields directly into your namespace as regular variables using the :FIELDS import tag. Access these fields as variables named with a preceding s_ in front their method names. Thus, $serv_obj.name corresponds to $s_name if you import the fields.
 
 The `getserv` function is a simple front-end that forwards a numeric argument to `getservbyport` and the rest to `getservbyname`.
+
+PORTING CAVEATS
+===============
+
+This module depends on the availability of POSIX semantics. This is generally not available on Windows, so this module will probably not work on Windows.
 
 AUTHOR
 ======
@@ -36,9 +41,9 @@ Source can be located at: https://github.com/lizmat/serv-servent . Comments and 
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018,2020 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

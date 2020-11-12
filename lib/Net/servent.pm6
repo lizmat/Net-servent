@@ -1,11 +1,11 @@
-use v6.c;
+use v6.*;
 
 our $s_name    is export(:FIELDS);
 our @s_aliases is export(:FIELDS);
 our $s_port    is export(:FIELDS);
 our $s_proto   is export(:FIELDS);
 
-class Net::servent:ver<0.0.1>:auth<cpan:ELIZABETH> {
+class Net::servent:ver<0.0.2>:auth<cpan:ELIZABETH> {
     has Str $.name;
     has     @.aliases;
     has Int $.port;
@@ -31,15 +31,18 @@ sub populate(@fields) {
 }
 
 my sub getservbyname(Str() $name, Str() $proto) is export(:DEFAULT:FIELDS) {
-    use P5getservbyname; populate(getservbyname($name,$proto))
+    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    populate(getservbyname($name,$proto))
 }
 
 my sub getservbyport(Int:D $port, Str() $proto) is export(:DEFAULT:FIELDS) {
-    use P5getservbyname; populate(getservbyport($port,$proto))
+    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    populate(getservbyport($port,$proto))
 }
 
 my sub getservent() is export(:DEFAULT:FIELDS) {
-    use P5getservbyname; populate(getservent)
+    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    populate(getservent)
 }
 
 my proto sub getserv(|) is export(:DEFAULT:FIELDS) {*}
@@ -51,17 +54,19 @@ my multi sub getserv(Str:D $nam) is export(:DEFAULT:FIELDS) {
 }
 
 my constant &setservent is export(:DEFAULT:FIELDS) = do {
-    use P5getservbyname; &setservent
+    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    &setservent
 }
 my constant &endservent is export(:DEFAULT:FIELDS) = do {
-    use P5getservbyname; &endservent
+    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    &endservent
 }
 
 =begin pod
 
 =head1 NAME
 
-Net::servent - Port of Perl 5's Net::servent
+Raku port of Perl's Net::servent module
 
 =head1 SYNOPSIS
 
@@ -75,6 +80,9 @@ Net::servent - Port of Perl 5's Net::servent
     print "port for $s_name is $s_port, aliases are @s_aliases[]\n";
 
 =head1 DESCRIPTION
+
+This module tries to mimic the behaviour of Perl's C<Net::servent> module
+as closely as possible in the Raku Programming Language.
 
 This module's exports C<getservbyname>, C<getservbyportd>, and C<getservent>
 functions that return C<Net::servent> objects. This object has methods that
@@ -90,6 +98,12 @@ $serv_obj.name corresponds to $s_name if you import the fields.
 The C<getserv> function is a simple front-end that forwards a numeric argument
 to C<getservbyport> and the rest to C<getservbyname>.
 
+=head1 PORTING CAVEATS
+
+This module depends on the availability of POSIX semantics.  This is
+generally not available on Windows, so this module will probably not work
+on Windows.
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -99,12 +113,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018,2020 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

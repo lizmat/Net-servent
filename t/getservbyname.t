@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use Net::servent;
 
@@ -24,4 +24,4 @@ is getservbyname("thisnameshouldnotexist", "tcp"), Nil,
 is getservbyport(99999, "tcp"), Nil,
   'did lookup by non-existing port fail';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

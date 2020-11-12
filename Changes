@@ -2,5 +2,12 @@ Revision history for Net-servent
 
 {{$NEXT}}
 
+0.0.2  2020-11-12T20:20:48+01:00
+    - Change name of distribution
+    - Force to highest possible Raku version
+    - Update copyright year
+    - Add PORTING CAVEATS section about needing POSIX semantics
+    - Tighten up dependency on P5getservbyname
+
 0.0.1  2018-05-25T15:17:31+02:00
     - Initial version
