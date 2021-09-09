@@ -2,6 +2,13 @@ Revision history for Net-servent
 
 {{$NEXT}}
 
+0.0.3  2021-09-09T20:07:32+02:00
+    - Change file extension to .rakumod
+    - Migrate to zef ecosystem
+    - Update email address
+    - Update copyright year
+    - Update dependency
+
 0.0.2  2020-11-12T20:20:48+01:00
     - Change name of distribution
     - Force to highest possible Raku version

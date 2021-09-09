@@ -1,19 +1,19 @@
 {
-  "auth": "cpan:ELIZABETH",
+  "auth": "zef:lizmat",
   "authors": [
     "Elizabeth Mattijsen"
   ],
   "build-depends": [
   ],
   "depends": [
-    "P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>"
+    "P5getservbyname:ver<0.0.7>:auth<zef:lizmat>"
   ],
   "description": "Raku port of Perl's Net::servent module",
   "license": "Artistic-2.0",
   "name": "Net::servent",
   "perl": "6.c",
   "provides": {
-    "Net::servent": "lib/Net/servent.pm6"
+    "Net::servent": "lib/Net/servent.rakumod"
   },
   "resources": [
   ],
@@ -24,5 +24,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

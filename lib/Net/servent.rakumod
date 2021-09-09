@@ -5,7 +5,7 @@ our @s_aliases is export(:FIELDS);
 our $s_port    is export(:FIELDS);
 our $s_proto   is export(:FIELDS);
 
-class Net::servent:ver<0.0.2>:auth<cpan:ELIZABETH> {
+class Net::servent:ver<0.0.3>:auth<zef:lizmat> {
     has Str $.name;
     has     @.aliases;
     has Int $.port;
@@ -31,17 +31,17 @@ sub populate(@fields) {
 }
 
 my sub getservbyname(Str() $name, Str() $proto) is export(:DEFAULT:FIELDS) {
-    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    use P5getservbyname:ver<0.0.7>:auth<zef:lizmat>;
     populate(getservbyname($name,$proto))
 }
 
 my sub getservbyport(Int:D $port, Str() $proto) is export(:DEFAULT:FIELDS) {
-    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    use P5getservbyname:ver<0.0.7>:auth<zef:lizmat>;
     populate(getservbyport($port,$proto))
 }
 
 my sub getservent() is export(:DEFAULT:FIELDS) {
-    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    use P5getservbyname:ver<0.0.7>:auth<zef:lizmat>;
     populate(getservent)
 }
 
@@ -54,11 +54,11 @@ my multi sub getserv(Str:D $nam) is export(:DEFAULT:FIELDS) {
 }
 
 my constant &setservent is export(:DEFAULT:FIELDS) = do {
-    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    use P5getservbyname:ver<0.0.7>:auth<zef:lizmat>;
     &setservent
 }
 my constant &endservent is export(:DEFAULT:FIELDS) = do {
-    use P5getservbyname:ver<0.0.6>:auth<cpan:ELIZABETH>;
+    use P5getservbyname:ver<0.0.7>:auth<zef:lizmat>;
     &endservent
 }
 
@@ -106,14 +106,14 @@ on Windows.
 
 =head1 AUTHOR
 
-Elizabeth Mattijsen <liz@wenzperl.nl>
+Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/serv-servent . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018,2020 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
